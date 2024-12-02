@@ -21,9 +21,25 @@ namespace ResponsiJunpro2MelvinWaluyo
         private string sql = null;
         private DataGridViewRow r;
 
+        // Polymorphism
+        // Kedua Method memiliki nama yang sama tetapi memiliki parameter yang berbeda
+        // Satu method tidak memiliki parameter
+        // Satu method memiliki parameter String connstring untuk melakukan inisiasi koneksi ke Postgre
+        private void EstablishConnection(string connstring)
+        {
+            this.connstring = connstring;
+            conn = new NpgsqlConnection(connstring);
+        }
+
+        private void EstablishConnection()
+        {
+            MessageBox.Show("Connection to PostGre is underway", "Good", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            conn = new NpgsqlConnection(connstring);
+            EstablishConnection(connstring);
+            EstablishConnection();
             LoadData();
         }
 
